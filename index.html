@@ -1,26 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Calculator app</title>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
+    <title>Frontend Mentor | Calculator app</title>
 
-
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="nav">
+      <h2 class="nav__title">calc</h2>
+      <div class="nav__theme">
+        <h3 class="nav__theme__title">Theme</h3>
+        <div class="nav__theme__slider">
+          <div class="nav__theme__slider__numbers">
+            <p class="nav__theme__slider__number">1</p>
+            <p class="nav__theme__slider__number">2</p>
+            <p class="nav__theme__slider__number">3</p>
+          </div>
+          <div class="slider">
+            <input type="checkbox" name="theme" checked />
+            <input type="checkbox" name="theme" />
+            <input type="checkbox" name="theme" />
+          </div>
+        </div>
+      </div>
+    </nav>
+    <main class="calculator">
+      <section class="calculator__result">
+        <h1 class="calculator__result__screen">399,981</h1>
+      </section>
+      <section class="calculator__buttons">
+        <div id="button--7" class="calculator__buttons--7 button">
+          <h1>7</h1>
+        </div>
+        <div id="button--8" class="calculator__buttons--8 button">
+          <h1>8</h1>
+        </div>
+        <div id="button--9" class="calculator__buttons--9 button">
+          <h1>9</h1>
+        </div>
+        <div
+          id="button--del"
+          class="calculator__buttons--del button button--secondary"
+        >
+          <h1>DEL</h1>
+        </div>
+        <div id="button--4" class="calculator__buttons--4 button">
+          <h1>4</h1>
+        </div>
+        <div id="button--5" class="calculator__buttons--5 button">
+          <h1>5</h1>
+        </div>
+        <div id="button--6" class="calculator__buttons--6 button">
+          <h1>6</h1>
+        </div>
+        <div id="button--plus" class="calculator__buttons--plus button">
+          <h1>+</h1>
+        </div>
+        <div id="button--1" class="calculator__buttons--1 button">
+          <h1>1</h1>
+        </div>
+        <div id="button--2" class="calculator__buttons--2 button">
+          <h1>2</h1>
+        </div>
+        <div id="button--3" class="calculator__buttons--3 button">
+          <h1>3</h1>
+        </div>
+        <div id="button--minus" class="calculator__buttons--minus button">
+          <h1>-</h1>
+        </div>
+        <div id="button--dot" class="calculator__buttons--dot button">
+          <h1>.</h1>
+        </div>
+        <div id="button--0" class="calculator__buttons--0 button">
+          <h1>0</h1>
+        </div>
+        <div id="button--divide" class="calculator__buttons--divide button">
+          <h1>/</h1>
+        </div>
+        <div id="button--mult" class="calculator__buttons--mult button">
+          <h1>x</h1>
+        </div>
+        <div
+          id="button--reset"
+          class="calculator__buttons--reset button button--secondary"
+        >
+          <h1>RESET</h1>
+        </div>
+        <div
+          id="button--equal"
+          class="calculator__buttons--equal button button--danger"
+        >
+          <h1>=</h1>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>

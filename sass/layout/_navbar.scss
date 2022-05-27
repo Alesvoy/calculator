@@ -1,0 +1,19 @@
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__theme {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__slider {
+      &__numbers {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+      }
+    }
+  }
+}

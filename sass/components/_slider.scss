@@ -1,0 +1,20 @@
+.slider {
+  background: $theme1-color-dark;
+  border-radius: 10rem;
+  height: 2.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0.5rem;
+
+  & input {
+    -webkit-appearance: none;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 10rem;
+
+    &:checked {
+      background-color: $theme1-slider-color;
+    }
+  }
+}
