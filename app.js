@@ -9,6 +9,11 @@
 (() => {
   function calculatorFunc() {
     const numberScreen = document.querySelector('#numberScreen');
+    const delBtn = document.querySelector('#button--del');
+
+    delBtn.addEventListener('click', () => {
+      removeFromScreen();
+    });
 
     function createNumberButtonsArrayWithEventListeners() {
       const button0El = document.querySelector('#button--0');
@@ -43,37 +48,79 @@
     }
 
     function insertToScreen(item = 0) {
-      if (numberScreen.textContent === '0') {
-        numberScreen.textContent = item;
-      } else {
-        numberScreen.textContent = numberScreen.textContent + item;
+      if (numberScreen.textContent.length <= 9) {
+        if (numberScreen.textContent === '0') {
+          numberScreen.textContent = item;
+        } else {
+          numberScreen.textContent = numberScreen.textContent + item;
+        }
+        addCommasToScreen();
       }
+    }
+
+    function removeFromScreen() {
+      let strArr = numberScreen.textContent.split('');
+
+      while (strArr.includes(',')) {
+        removesCommas(strArr);
+      }
+
+      strArr.pop();
+
+      numberScreen.textContent = strArr.join('');
+      addCommasToScreen();
+    }
+
+    function removesCommas(strArr) {
+      let index;
+
+      for (let i = 0; i < strArr.length; i++) {
+        strArr[i] === ',' ? (index = i) : '';
+      }
+      strArr.splice(index, 1);
+
+      numberScreen.textContent = strArr.join('');
     }
 
     function addCommasToScreen() {
       window.addEventListener('click', () => {
-        // TODO: Add commas to screen
-        // if(numberScreen.textContent.length = 4 && numberScreen.textContent.length < 7) {
-        // }
+        const strArr = numberScreen.textContent.split('');
+
+        if (
+          numberScreen.textContent.length > 3 &&
+          numberScreen.textContent.length < 8
+        ) {
+          while (strArr.includes(',')) {
+            removesCommas(strArr);
+          }
+
+          strArr.splice(strArr.length - 3, 0, ',');
+
+          numberScreen.textContent = strArr.join('');
+        } else if (numberScreen.textContent.length >= 6) {
+          while (strArr.includes(',')) {
+            removesCommas(strArr);
+          }
+
+          strArr.splice(strArr.length - 3, 0, ',');
+          strArr.splice(strArr.length - 7, 0, ',');
+
+          numberScreen.textContent = strArr.join('');
+        }
       });
     }
 
     function render() {
       createNumberButtonsArrayWithEventListeners();
-      addCommasToScreen();
-    }
-
-    function init() {
-      render();
       insertToScreen();
     }
 
     return {
-      init,
+      render,
     };
   }
 
   const calculator = calculatorFunc();
 
-  calculator.init();
+  calculator.render();
 })();
