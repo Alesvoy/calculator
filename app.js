@@ -1,8 +1,9 @@
-// TODO: Add commas to the screen
-// TODO: Top inputs to 10 digits
-// TODO: Make reset button work
-// TODO: Make delete button work
-// TODO: Make number insertion work
+// DONE: Add commas to the screen
+// DONE: Top inputs to 10 digits
+// DONE: Make reset button work
+// DONE: Make delete button work
+// DONE: Make number insertion work
+// TODO: Make dot functionality work
 // TODO: Make operations work
 // TODO: Make equal button work
 
@@ -10,9 +11,14 @@
   function calculatorFunc() {
     const numberScreen = document.querySelector('#numberScreen');
     const delBtn = document.querySelector('#button--del');
+    const resetBtn = document.querySelector('#button--reset');
 
     delBtn.addEventListener('click', () => {
       removeFromScreen();
+    });
+
+    resetBtn.addEventListener('click', () => {
+      numberScreen.textContent = 0;
     });
 
     function createNumberButtonsArrayWithEventListeners() {
