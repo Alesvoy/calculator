@@ -3,7 +3,7 @@
 // DONE: Make reset button work
 // DONE: Make delete button work
 // DONE: Make number insertion work
-// TODO: Make dot functionality work
+// DONE: Make dot functionality work NOTE:  Make functionality similar to the iphone calc
 // TODO: Make operations work
 // TODO: Make equal button work
 
@@ -12,6 +12,7 @@
     const numberScreen = document.querySelector('#numberScreen');
     const delBtn = document.querySelector('#button--del');
     const resetBtn = document.querySelector('#button--reset');
+    const dotBtn = document.querySelector('#button--dot');
 
     delBtn.addEventListener('click', () => {
       removeFromScreen();
@@ -19,6 +20,10 @@
 
     resetBtn.addEventListener('click', () => {
       numberScreen.textContent = 0;
+    });
+
+    dotBtn.addEventListener('click', () => {
+      insertToScreen(dotBtn.children[0].textContent);
     });
 
     function createNumberButtonsArrayWithEventListeners() {
@@ -53,19 +58,41 @@
       });
     }
 
-    function insertToScreen(item = 0) {
-      if (numberScreen.textContent.length <= 9) {
-        if (numberScreen.textContent === '0') {
-          numberScreen.textContent = item;
-        } else {
-          numberScreen.textContent = numberScreen.textContent + item;
-        }
-        addCommasToScreen();
+    function checkEmptyScreen() {
+      if (numberScreen.textContent === '') {
+        numberScreen.textContent = '0';
       }
     }
 
+    function insertToScreen(item = 0) {
+      const strArr = numberScreen.textContent.split('');
+      const newArr = strArr.join('').split('.');
+
+      if (strArr.includes('.') && newArr[1].length > 1) {
+        return;
+      }
+
+      if (numberScreen.textContent.length <= 9) {
+        if (numberScreen.textContent === '0') {
+          if (item === '.') {
+            numberScreen.textContent = '0.';
+          } else {
+            numberScreen.textContent = item;
+          }
+        } else {
+          numberScreen.textContent = numberScreen.textContent + item;
+        }
+
+        if (!strArr.includes('.')) {
+          addCommasToScreen();
+        }
+      }
+
+      checkEmptyScreen();
+    }
+
     function removeFromScreen() {
-      let strArr = numberScreen.textContent.split('');
+      const strArr = numberScreen.textContent.split('');
 
       while (strArr.includes(',')) {
         removesCommas(strArr);
@@ -74,7 +101,12 @@
       strArr.pop();
 
       numberScreen.textContent = strArr.join('');
-      addCommasToScreen();
+
+      if (!strArr.includes('.')) {
+        addCommasToScreen();
+      }
+
+      checkEmptyScreen();
     }
 
     function removesCommas(strArr) {
@@ -89,31 +121,33 @@
     }
 
     function addCommasToScreen() {
-      window.addEventListener('click', () => {
-        const strArr = numberScreen.textContent.split('');
+      const strArr = numberScreen.textContent.split('');
 
-        if (
-          numberScreen.textContent.length > 3 &&
-          numberScreen.textContent.length < 8
-        ) {
-          while (strArr.includes(',')) {
-            removesCommas(strArr);
-          }
+      if (strArr.includes('.') && strArr.includes(',')) {
+        return;
+      }
 
-          strArr.splice(strArr.length - 3, 0, ',');
-
-          numberScreen.textContent = strArr.join('');
-        } else if (numberScreen.textContent.length >= 6) {
-          while (strArr.includes(',')) {
-            removesCommas(strArr);
-          }
-
-          strArr.splice(strArr.length - 3, 0, ',');
-          strArr.splice(strArr.length - 7, 0, ',');
-
-          numberScreen.textContent = strArr.join('');
+      if (
+        numberScreen.textContent.length > 3 &&
+        numberScreen.textContent.length < 8
+      ) {
+        while (strArr.includes(',')) {
+          removesCommas(strArr);
         }
-      });
+
+        strArr.splice(strArr.length - 3, 0, ',');
+
+        numberScreen.textContent = strArr.join('');
+      } else if (numberScreen.textContent.length >= 6) {
+        while (strArr.includes(',')) {
+          removesCommas(strArr);
+        }
+
+        strArr.splice(strArr.length - 3, 0, ',');
+        strArr.splice(strArr.length - 7, 0, ',');
+
+        numberScreen.textContent = strArr.join('');
+      }
     }
 
     function render() {
