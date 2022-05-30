@@ -4,8 +4,10 @@
 // DONE: Make delete button work
 // DONE: Make number insertion work
 // DONE: Make dot functionality work NOTE:  Make functionality similar to the iphone calc
-// TODO: Make operations work
-// TODO: Make equal button work
+// DONE: Make operations work
+// DONE: Make equal button work
+// DONE: Make operations work with dot
+// TODO: Once an operation gets done add commas
 
 (() => {
   function calculatorFunc() {
@@ -88,6 +90,12 @@
     }
 
     function operate(operation) {
+      const strArr = numberScreen.textContent.split('');
+
+      if (strArr.includes(',')) {
+        removesCommas(strArr);
+      }
+
       if (firstNum === 0) {
         firstNum = undefined;
         secondNum = undefined;
@@ -115,8 +123,20 @@
 
     function equal(firstNum, secondNum) {
       if (prevOperation === '+') {
+        const result = firstNum + secondNum;
+
+        if (result % 1 != 0) {
+          return result.toFixed(2);
+        }
+
         return firstNum + secondNum;
       } else if (prevOperation === '-') {
+        const result = firstNum - secondNum;
+
+        if (result % 1 != 0) {
+          return result.toFixed(2);
+        }
+
         return firstNum - secondNum;
       } else if (prevOperation === '/') {
         const result = firstNum / secondNum;
@@ -127,6 +147,12 @@
 
         return firstNum / secondNum;
       } else if (prevOperation === 'x') {
+        const result = firstNum * secondNum;
+
+        if (result % 1 != 0) {
+          return result.toFixed(2);
+        }
+
         return firstNum * secondNum;
       }
 
@@ -208,7 +234,8 @@
 
       if (
         numberScreen.textContent.length > 3 &&
-        numberScreen.textContent.length < 8
+        numberScreen.textContent.length < 8 &&
+        !strArr.includes('.')
       ) {
         while (strArr.includes(',')) {
           removesCommas(strArr);
@@ -217,7 +244,10 @@
         strArr.splice(strArr.length - 3, 0, ',');
 
         numberScreen.textContent = strArr.join('');
-      } else if (numberScreen.textContent.length >= 6) {
+      } else if (
+        numberScreen.textContent.length >= 6 &&
+        !strArr.includes('.')
+      ) {
         while (strArr.includes(',')) {
           removesCommas(strArr);
         }
