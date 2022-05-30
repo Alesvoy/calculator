@@ -13,18 +13,47 @@
     const delBtn = document.querySelector('#button--del');
     const resetBtn = document.querySelector('#button--reset');
     const dotBtn = document.querySelector('#button--dot');
+    let prevOperation = undefined;
+    let firstNum = undefined;
+    let secondNum = undefined;
 
     delBtn.addEventListener('click', () => {
       removeFromScreen();
     });
 
     resetBtn.addEventListener('click', () => {
-      numberScreen.textContent = 0;
+      fullReset();
     });
 
     dotBtn.addEventListener('click', () => {
       insertToScreen(dotBtn.children[0].textContent);
     });
+
+    function reset() {
+      numberScreen.textContent = 0;
+      secondNum = undefined;
+    }
+
+    function fullReset() {
+      reset();
+      firstNum = undefined;
+    }
+
+    function createOperationsArrayWithEventListeners() {
+      const plusEl = document.querySelector('#button--plus');
+      const minusEl = document.querySelector('#button--minus');
+      const divideEl = document.querySelector('#button--divide');
+      const timesEl = document.querySelector('#button--times');
+      const equalEl = document.querySelector('#button--equal');
+
+      const buttonsArr = [plusEl, minusEl, divideEl, timesEl, equalEl];
+
+      buttonsArr.forEach((item) =>
+        item.addEventListener('click', () => {
+          operate(item.children[0].textContent);
+        })
+      );
+    }
 
     function createNumberButtonsArrayWithEventListeners() {
       const button0El = document.querySelector('#button--0');
@@ -58,6 +87,52 @@
       });
     }
 
+    function operate(operation) {
+      if (firstNum === 0) {
+        firstNum = undefined;
+        secondNum = undefined;
+        prevOperation = undefined;
+      }
+
+      if (firstNum === undefined) {
+        firstNum = numberScreen.textContent * 1;
+        prevOperation = operation;
+        reset();
+      } else if (firstNum && !secondNum) {
+        secondNum = numberScreen.textContent * 1;
+        numberScreen.textContent = equal(firstNum, secondNum);
+        firstNum = numberScreen.textContent * 1;
+        prevOperation = operation;
+      } else if (firstNum && secondNum) {
+        secondNum = numberScreen.textContent * 1;
+        numberScreen.textContent = equal(firstNum, secondNum);
+        firstNum = numberScreen.textContent * 1;
+        prevOperation = operation;
+      }
+
+      console.log(firstNum, secondNum, prevOperation);
+    }
+
+    function equal(firstNum, secondNum) {
+      if (prevOperation === '+') {
+        return firstNum + secondNum;
+      } else if (prevOperation === '-') {
+        return firstNum - secondNum;
+      } else if (prevOperation === '/') {
+        const result = firstNum / secondNum;
+
+        if (result % 1 != 0) {
+          return result.toFixed(2);
+        }
+
+        return firstNum / secondNum;
+      } else if (prevOperation === 'x') {
+        return firstNum * secondNum;
+      }
+
+      return firstNum * 1;
+    }
+
     function checkEmptyScreen() {
       if (numberScreen.textContent === '') {
         numberScreen.textContent = '0';
@@ -67,6 +142,10 @@
     function insertToScreen(item = 0) {
       const strArr = numberScreen.textContent.split('');
       const newArr = strArr.join('').split('.');
+
+      if (firstNum && secondNum) {
+        reset();
+      }
 
       if (strArr.includes('.') && newArr[1].length > 1) {
         return;
@@ -152,6 +231,7 @@
 
     function render() {
       createNumberButtonsArrayWithEventListeners();
+      createOperationsArrayWithEventListeners();
       insertToScreen();
     }
 
