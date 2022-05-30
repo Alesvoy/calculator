@@ -12,6 +12,11 @@ body {
   height: 100vh;
 }
 
+@media screen and (max-width: 578px) {
+  body {
+    width: 375px;
+  }
+}
 html {
   font-size: 62.5%;
 }
@@ -67,7 +72,7 @@ body {
 .nav {
   color: #ffffff;
   height: 4.2rem;
-  width: 32rem;
+  width: 100%;
 }
 .nav__title {
   align-self: flex-end;
@@ -91,6 +96,11 @@ body {
   margin-bottom: 0.5rem;
 }
 
+@media screen and (min-width: 579px) {
+  .nav {
+    width: 100%;
+  }
+}
 .slider {
   background: #242d44;
   border-radius: 10rem;
@@ -127,6 +137,11 @@ body {
   z-index: 1;
 }
 
+@media screen and (min-width: 579px) {
+  .calculator__buttons {
+    width: 100%;
+  }
+}
 .calculator {
   display: flex;
   flex-direction: column;
@@ -155,6 +170,12 @@ body {
   grid-column-end: 5;
 }
 
+@media screen and (min-width: 579px) {
+  .calculator__buttons {
+    grid-template-columns: repeat(4, 10.1rem);
+    grid-template-rows: repeat(5, 6rem);
+  }
+}
 .nav {
   display: flex;
   align-items: center;
@@ -176,9 +197,17 @@ body {
   grid-template-columns: 1fr;
   grid-template-rows: 4.2rem 1fr;
   row-gap: 3.2rem;
+  justify-content: center;
+  align-content: center;
   padding: 3.1rem 2.4rem;
 }
 
+@media screen and (min-width: 579px) {
+  body {
+    grid-template-columns: 54rem;
+    grid-template-rows: 4.2rem 63.2rem;
+  }
+}
 body {
   background: #394663;
   padding: 3.1rem 2.4rem;

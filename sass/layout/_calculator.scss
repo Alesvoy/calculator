@@ -29,3 +29,10 @@
     }
   }
 }
+
+@media screen and (min-width: 579px) {
+  .calculator__buttons {
+    grid-template-columns: repeat(4, 10.1rem);
+    grid-template-rows: repeat(5, 6rem);
+  }
+}

@@ -1,7 +1,7 @@
 .nav {
   color: $theme1-letter-color;
   height: 4.2rem;
-  width: 32rem;
+  width: 100%;
 
   &__title {
     align-self: flex-end;
@@ -27,5 +27,11 @@
         margin-bottom: 0.5rem;
       }
     }
+  }
+}
+
+@media screen and (min-width: 579px) {
+  .nav {
+    width: 100%;
   }
 }
