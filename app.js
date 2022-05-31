@@ -105,17 +105,20 @@
       if (firstNum === undefined) {
         firstNum = numberScreen.textContent * 1;
         prevOperation = operation;
+        addCommasToScreen();
         reset();
       } else if (firstNum && !secondNum) {
         secondNum = numberScreen.textContent * 1;
         numberScreen.textContent = equal(firstNum, secondNum);
         firstNum = numberScreen.textContent * 1;
         prevOperation = operation;
+        addCommasToScreen();
       } else if (firstNum && secondNum) {
         secondNum = numberScreen.textContent * 1;
         numberScreen.textContent = equal(firstNum, secondNum);
         firstNum = numberScreen.textContent * 1;
         prevOperation = operation;
+        addCommasToScreen();
       }
 
       console.log(firstNum, secondNum, prevOperation);
@@ -229,6 +232,10 @@
       const strArr = numberScreen.textContent.split('');
 
       if (strArr.includes('.') && strArr.includes(',')) {
+        return;
+      }
+
+      if (strArr.includes('.')) {
         return;
       }
 
