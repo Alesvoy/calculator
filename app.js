@@ -7,7 +7,7 @@
 // DONE: Make operations work
 // DONE: Make equal button work
 // DONE: Make operations work with dot
-// TODO: Once an operation gets done add commas
+// DONE: Once an operation gets done add commas
 
 (() => {
   function calculatorFunc() {
@@ -105,20 +105,17 @@
       if (firstNum === undefined) {
         firstNum = numberScreen.textContent * 1;
         prevOperation = operation;
-        addCommasToScreen();
         reset();
       } else if (firstNum && !secondNum) {
         secondNum = numberScreen.textContent * 1;
         numberScreen.textContent = equal(firstNum, secondNum);
         firstNum = numberScreen.textContent * 1;
         prevOperation = operation;
-        addCommasToScreen();
       } else if (firstNum && secondNum) {
         secondNum = numberScreen.textContent * 1;
         numberScreen.textContent = equal(firstNum, secondNum);
         firstNum = numberScreen.textContent * 1;
         prevOperation = operation;
-        addCommasToScreen();
       }
 
       console.log(firstNum, secondNum, prevOperation);
