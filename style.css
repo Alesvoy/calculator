@@ -40,16 +40,6 @@ body {
 .button:hover {
   cursor: pointer;
 }
-.button::before {
-  content: "";
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background: hsl(28deg, 16%, 65%);
-  top: 0.4rem;
-  border-radius: 0.5rem;
-  z-index: -1;
-}
 .button--secondary, .button--danger {
   color: #fff;
 }
@@ -59,14 +49,18 @@ body {
 .button--secondary {
   background: #637198;
 }
-.button--secondary::before {
-  background: hsl(224deg, 28%, 35%);
-}
 .button--danger {
   background: #d03f2f;
 }
-.button--danger::before {
-  background: hsl(6deg, 70%, 34%);
+.button--behind {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: hsl(28deg, 16%, 65%);
+  top: 0.4rem;
+  border-radius: 0.5rem;
+  z-index: -1;
 }
 
 .nav {
