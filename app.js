@@ -117,8 +117,6 @@
         firstNum = numberScreen.textContent * 1;
         prevOperation = operation;
       }
-
-      console.log(firstNum, secondNum, prevOperation);
     }
 
     function equal(firstNum, secondNum) {
