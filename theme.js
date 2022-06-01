@@ -25,12 +25,9 @@
         item.addEventListener('change', () => {
           checkboxesArray.forEach((item) => {
             item.checked = false;
-            // item.classList.remove('active');
           });
 
           item.checked = true;
-
-          // item.classList.add('active');
 
           themeSwitch(selectedTheme());
         })
